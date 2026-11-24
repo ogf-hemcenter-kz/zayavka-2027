@@ -189,7 +189,8 @@ function price(it){
   let chk;
   if(use==null) chk=['idle','Нет цены'];
   else if(it.ch!=='ПЛ'&&ceil!=null&&use>ceil+1e-9) chk=['no','Выше предельной ('+csrc+')'];
-  else if(it.ch!=='ПЛ'&&p94!=null&&use>p94+1e-9) chk=['no','Выше опт. цены (Приказ-94)'];
+  else if(it.ch==='СКФ'&&src==='прайс СК-Фармация') chk=['ok','Цена СКФ'];
+  else if(it.ch==='ПЛ'&&p94!=null&&use>p94+1e-9) chk=['no','Выше опт. цены (Приказ-94)'];
   else if(it.ch==='ПЛ') chk=['diff','Платные — вне Правил 110'];
   else if(it.ch==='вне СКФ'&&ceil!=null&&own!=null&&own>ceil+1e-9) chk=['diff','КП выше предельной — риск, что не закупите'];
   else if(ceil!=null) chk=['ok','В пределах ('+csrc+')'];
@@ -759,7 +760,7 @@ function itemScreen(id,br){
   <div class="card prc"><span class="k">Цена прайса СК-Фармация</span><span class="v">${pr.sk!=null?fm(pr.sk)+' ₸':'—'}</span>
    <span class="k">Предельная по МНН (Приказ-96)</span><span class="v">${pr.p96!=null?fm(pr.p96)+' ₸':'—'}</span>
    <span class="k">Предельная по ТН (Приказ-77)</span><span class="v">${pr.p77!=null?fm(pr.p77)+' ₸':'—'}</span>
-   <span class="k">Опт. предельная ТН (Приказ-94, проверка)</span><span class="v">${pr.p94!=null?fm(pr.p94)+' ₸':'—'}</span>
+   <span class="k">Опт. предельная ТН (Приказ-94, для платных)</span><span class="v">${pr.p94!=null?fm(pr.p94)+' ₸':'—'}</span>
    <span class="k">Цена по КП / поставщика</span><span class="v">${pr.own!=null?fm(pr.own)+' ₸':'—'}</span>
    <span class="k big">${it.ch==='СКФ'?'Цена в заявке СК-Фармации':it.ch==='ПЛ'?'Цена закупа (платные)':'Цена для плана закупа med.ecc.kz'}</span><span class="v big">${pr.use!=null?fm(pr.use)+' ₸':'—'}</span>
    <span class="k small">${esc(pr.src)}</span><span class="v">${chkPill(pr.chk)}</span></div>
