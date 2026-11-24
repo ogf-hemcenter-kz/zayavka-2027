@@ -188,8 +188,8 @@ function price(it){
   else { if(ceil!=null&&own!=null&&own<ceil){use=own;src='коммерческое предложение (ниже предельной)'} else if(ceil!=null){use=ceil;src='предельная ('+csrc+')'} else if(own!=null){use=own;src='коммерческие предложения (нет предельной)'} }
   let chk;
   if(use==null) chk=['idle','Нет цены'];
-  else if(it.ch!=='ПЛ'&&ceil!=null&&use>ceil+1e-9) chk=['no','Выше предельной ('+csrc+')'];
   else if(it.ch==='СКФ'&&src==='прайс СК-Фармация') chk=['ok','Цена СКФ'];
+  else if(it.ch!=='ПЛ'&&ceil!=null&&use>ceil+1e-9) chk=['no','Выше предельной ('+csrc+')'];
   else if(it.ch==='ПЛ'&&p94!=null&&use>p94+1e-9) chk=['no','Выше опт. цены (Приказ-94)'];
   else if(it.ch==='ПЛ') chk=['diff','Платные — вне Правил 110'];
   else if(it.ch==='вне СКФ'&&ceil!=null&&own!=null&&own>ceil+1e-9) chk=['diff','КП выше предельной — риск, что не закупите'];
